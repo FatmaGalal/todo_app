@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
 
 part 'todo_model.freezed.dart';
+part 'todo_model.g.dart';
 
 Uuid uuid = const Uuid();
 
@@ -17,6 +18,8 @@ abstract class TodoModel with _$TodoModel {
   factory TodoModel.add({required String desc}) {
     return TodoModel(id: uuid.v4(), desc: desc);
   }
+  factory TodoModel.fromJson(Map<String, dynamic> json) =>
+      _$TodoModelFromJson(json);
 }
 
 enum Filter { all, active, completed }

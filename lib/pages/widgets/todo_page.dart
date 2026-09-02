@@ -1,14 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/pages/widgets/filter_todo.dart';
+import 'package:todo_app/pages/widgets/new_todo.dart';
+import 'package:todo_app/pages/widgets/search_todo.dart';
+import 'package:todo_app/pages/widgets/show_todos.dart';
+import 'package:todo_app/pages/widgets/todo_header.dart';
 
 class TodoPage extends StatelessWidget {
   const TodoPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(title: Text('ToDo')),
-      body: Center(child: Text('Tasks')),
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            children: [
+              TodoHeader(),
+              NewTodo(),
+              SearchTodo(),
+              FilterTodo(),
+              SizedBox(height: 10),
+              Expanded(child: ShowTodos()),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

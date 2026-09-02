@@ -11,6 +11,7 @@ part of 'todo_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$TodoModel implements DiagnosticableTreeMixin {
 
@@ -21,6 +22,8 @@ mixin _$TodoModel implements DiagnosticableTreeMixin {
 @pragma('vm:prefer-inline')
 $TodoModelCopyWith<TodoModel> get copyWith => _$TodoModelCopyWithImpl<TodoModel>(this as TodoModel, _$identity);
 
+  /// Serializes this TodoModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
@@ -34,7 +37,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is TodoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.desc, desc) || other.desc == desc)&&(identical(other.completed, completed) || other.completed == completed));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,id,desc,completed);
 
@@ -211,11 +214,11 @@ return $default(_that.id,_that.desc,_that.completed);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _TodoModel with DiagnosticableTreeMixin implements TodoModel {
   const _TodoModel({required this.id, required this.desc, this.completed = false});
-  
+  factory _TodoModel.fromJson(Map<String, dynamic> json) => _$TodoModelFromJson(json);
 
 @override final  String id;
 @override final  String desc;
@@ -227,7 +230,10 @@ class _TodoModel with DiagnosticableTreeMixin implements TodoModel {
 @pragma('vm:prefer-inline')
 _$TodoModelCopyWith<_TodoModel> get copyWith => __$TodoModelCopyWithImpl<_TodoModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$TodoModelToJson(this, );
+}
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
@@ -240,7 +246,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _TodoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.desc, desc) || other.desc == desc)&&(identical(other.completed, completed) || other.completed == completed));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,id,desc,completed);
 

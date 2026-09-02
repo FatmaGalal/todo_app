@@ -41,7 +41,7 @@ final class TodoListProvider
   }
 }
 
-String _$todoListHash() => r'23e77dcb975a5b11b066aca5476a7877b02de7c5';
+String _$todoListHash() => r'8d75b0d21b82f912ab0d774c8acc07152ae55c28';
 
 abstract class _$TodoList extends $Notifier<List<TodoModel>> {
   List<TodoModel> build();
