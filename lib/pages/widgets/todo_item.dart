@@ -120,7 +120,7 @@ class _ConfirmEditDialogState extends ConsumerState<ConfiirmEditDialog> {
             } else {
               ref
                   .read(todoListProvider.notifier)
-                  .editToDo(widget.todo.id, textController.text);
+                  .editTodo(widget.todo.id, textController.text);
               Navigator.pop(context);
             }
           },

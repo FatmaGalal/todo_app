@@ -13,7 +13,7 @@ part of 'todo_list_provider.dart';
 const todoListProvider = TodoListProvider._();
 
 final class TodoListProvider
-    extends $NotifierProvider<TodoList, List<TodoModel>> {
+    extends $AsyncNotifierProvider<TodoList, List<TodoModel>> {
   const TodoListProvider._()
     : super(
         from: null,
@@ -31,30 +31,22 @@ final class TodoListProvider
   @$internal
   @override
   TodoList create() => TodoList();
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(List<TodoModel> value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<List<TodoModel>>(value),
-    );
-  }
 }
 
-String _$todoListHash() => r'8d75b0d21b82f912ab0d774c8acc07152ae55c28';
+String _$todoListHash() => r'5c7be1709923bb6def9ff9679223d8e98d57721b';
 
-abstract class _$TodoList extends $Notifier<List<TodoModel>> {
-  List<TodoModel> build();
+abstract class _$TodoList extends $AsyncNotifier<List<TodoModel>> {
+  FutureOr<List<TodoModel>> build();
   @$mustCallSuper
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<List<TodoModel>, List<TodoModel>>;
+    final ref = this.ref as $Ref<AsyncValue<List<TodoModel>>, List<TodoModel>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<List<TodoModel>, List<TodoModel>>,
-              List<TodoModel>,
+              AnyNotifier<AsyncValue<List<TodoModel>>, List<TodoModel>>,
+              AsyncValue<List<TodoModel>>,
               Object?,
               Object?
             >;
