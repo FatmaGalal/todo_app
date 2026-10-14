@@ -23,6 +23,8 @@ class _ShowTodoState extends ConsumerState<ShowTodos> {
     super.initState();
   }
 
+  Widget previousWideget = SizedBox.shrink();
+
   List<TodoModel> filterTodos(List<TodoModel> allTodos) {
     //final todoListState = ref.watch(todoListProvider);
     final filter = ref.watch(todoFilterProvider);
@@ -48,7 +50,6 @@ class _ShowTodoState extends ConsumerState<ShowTodos> {
 
   @override
   Widget build(BuildContext context) {
-    Widget previousWideget = SizedBox.shrink();
     ref.listen<AsyncValue<List<TodoModel>>>(todoListProvider, (previous, next) {
       if (!next.isLoading) {
         next.whenOrNull(
@@ -86,11 +87,9 @@ class _ShowTodoState extends ConsumerState<ShowTodos> {
 
         previousWideget = ListView.separated(
           itemCount: filteredTodos.length,
-          separatorBuilder: (BuildContext context, int index) {
-            return const Divider(color: Colors.grey);
-          },
+          separatorBuilder: (_, _) => const Divider(color: Colors.grey),
 
-          itemBuilder: (BuildContext context, int index) {
+          itemBuilder: (_, int index) {
             final todo = filteredTodos[index];
             return ProviderScope(
               overrides: [todoItemProvider.overrideWithValue(todo)],
