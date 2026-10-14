@@ -84,6 +84,11 @@ class _ShowTodoState extends ConsumerState<ShowTodos> {
     return todoListState.when(
       data: (List<TodoModel> allTodos) {
         final filteredTodos = filterTodos(allTodos);
+        if (filteredTodos.isEmpty) {
+          return const Center(
+            child: Text('Enter some Todos', style: TextStyle(fontSize: 20)),
+          );
+        }
 
         previousWideget = ListView.separated(
           itemCount: filteredTodos.length,
